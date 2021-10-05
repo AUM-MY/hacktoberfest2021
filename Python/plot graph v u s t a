@@ -1,0 +1,61 @@
+import matplotlib.pyplot as plt
+uList = []
+tList = []
+aList = []
+sList = []
+print("** ถ้าไม่มีค่าให้ใส่ -1 **")
+u = input("ความเร็วต้น : ")
+v = input("ความเร็วปลาย : ")
+a = input("ความเร่ง : ")
+t = input("เวลา : ")
+u1 = int(u)
+t1 = int(t)
+a1 = int(a)
+def calSpeed(u1,v1,a1,t1):
+    u = float(u1)
+    v = float(v1)
+    t = float(t1)
+    a = float(a1)
+    s = 0
+    if(u1 == "-1"):
+        s = (v*t)-((a*(t**2))/2)
+    elif(v1 == "-1"):
+        s = (u*t)+((a*(t**2))/2)
+    elif(a1 == "-1"):
+        s = ((u+v)/2)*t
+    elif(t1 == "-1"):
+        s = ((u**2)-(v**2))/(2*a)
+    return s
+def plotList(x,inList):
+  n = 0.0
+  a = x/20
+  for i in range(20):
+    n += a
+    inList.append(n)
+  return inList
+
+if(a == "-1"):
+  plotList(t1,tList)
+  plotList(u1,uList)
+  plt.ylabel("velocity (m/s)")
+  plt.xlabel("time (s)")
+  uList.reverse()
+  plt.plot(tList,uList)
+  uList.reverse()
+elif(t == "-1"):
+  plotList(int(calSpeed(u,v,a,t)),sList)
+  plotList(a1,aList)
+  plt.ylabel("acceleration (m/s^2)")
+  plt.xlabel("distance (m)")
+  aList.reverse()
+  plt.plot(sList,aList)
+  aList.reverse()
+
+print("------------------------------------")
+print("ผลลัพธ์ที่ได้ คือ ")
+print("ความเร็วต้น\t: ",u ,"\tm/s")
+print("ความเร็วปลาย\t: ",v,"\tm/s")
+print("ความเร่ง\t\t: ",a,"\tm/s^2")
+print("เวลา\t\t: ",t,"\ts")
+print("ระยะทางเบรก คือ ",calSpeed(u,v,a,t),"m")
+plt.show()
